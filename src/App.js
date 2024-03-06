@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const days = ["Mon", "Tue", "Wedy", "Thu", "Fri", "Sat", "Sun"];
   const [calendarDays, setCalendarDays] = useState([]);
   const [today, setToday] = useState(new Date().getDate());
 
@@ -31,6 +31,7 @@ function App() {
     // Add days from the previous month
     for (let i = daysFromPreviousMonth; i > 0; i--) {
       daysArray.push(-(daysInPreviousMonth - i + 1));
+      console.log(daysArray)
     }
     // Add days of the current month
     for (let i = 1; i <= daysInCurrentMonth; i++) {
@@ -55,13 +56,13 @@ function App() {
       <main className='p-4 mx-auto'>
         <div className='flex flex-col gap-5'>
           <div><h1>Calendar</h1></div>
-          <div className='flex flex-row md:gap-5 border border-indigo-600 border-round divide-x divide-slate-200 m-auto p-2 md:p-5'>
-            {days.map((day, index) => <div key={index} className='p-1 text-xs md:p-3'>{day}</div>)}
+          <div className='grid grid-cols-7 gap-1 p-1 md:gap-4 border border-indigo-600 border-round m-auto md:p-5'>
+            {days.map((day, index) => <div key={index} className='p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md'>{day}</div>)}
           </div>
           <div className='grid grid-cols-7 gap-1 p-1 md:gap-4 border border-indigo-600 border-round m-auto md:p-5'>
             {calendarDays.map((day, index) => {
-              const isPast = day < today && day > 0; // Adjust if needed to account for your exact logic
-              return <div key={index} className={`p-3 md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300' : ''}`}>
+              const isPast = day < today; // Adjust if needed to account for your exact logic
+              return <div key={index} className={`p-1 w-11 text-sm cursor-pointer font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 font-normal line-through cursor-default' : ''}`}>
                 {Math.abs(day)}
               </div>
             })}
