@@ -7,6 +7,7 @@ function App() {
   
   const [calendarDays, setCalendarDays] = useState([]);
   const [today, setToday] = useState(new Date().getDate());
+  const [month, setMonth] = useState(months[new Date().getMonth() - 1]);
 
   const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
@@ -50,6 +51,8 @@ function App() {
 
     setToday(today.getDate());
     setCalendarDays(generateCalendarDays(currentYear, currentMonth));
+
+    console.log(month)
   }, []);
 
   return (
@@ -57,6 +60,11 @@ function App() {
       <main className='p-4 mx-auto'>
         <div className='flex flex-col gap-5'>
           <div><h1>Calendar</h1></div>
+          <div className='flex'>
+            <div className='flex-none'><button>Back</button></div>
+            <div className='grow flex justify-center'>{month}</div>
+            <div className='flex-none'><button>Back</button></div>
+          </div>
           <div className='grid grid-cols-7 gap-1 p-1 md:gap-4 border border-indigo-600 border-round m-auto md:p-5'>
             {days.map((day, index) => <div key={index} className='p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md'>{day}</div>)}
           </div>
