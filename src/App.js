@@ -71,7 +71,7 @@ function App() {
           <div className='grid grid-cols-7 gap-1 p-1 md:gap-4 border border-indigo-600 border-round m-auto md:p-5'>
             {calendarDays.map((day, index) => {
               const isPast = day < today; // Adjust if needed to account for your exact logic
-              return <div key={index} className={`p-1 w-11 text-sm cursor-pointer font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 font-normal line-through cursor-default' : ''}`}>
+              return <div key={index} className={`p-1 w-11 text-sm cursor-pointer font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 font-normal line-through cursor-none' : ''}`}>
                 {Math.abs(day)}
               </div>
             })}
